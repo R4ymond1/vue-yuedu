@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gedc.dao.RedisMapper">
+	<resultMap id="BaseResultMap"
+		type="com.gedc.entity.VehicleClient">
+		<id column="recid" jdbcType="CHAR" property="recid" />
+		<result column="iccid" jdbcType="CHAR" property="iccid" />
+		<result column="use_authority" jdbcType="BIT"
+			property="useAuthority" />
+		<result column="create_user" jdbcType="VARCHAR"
+			property="createUser" />
+		<result column="update_user" jdbcType="VARCHAR"
+			property="updateUser" />
+	</resultMap>
+
+	<select id="selectDepartmentList"
+		resultType="com.gedc.entity.Department">
+		SELECT
+		id AS id,
+		name AS name,
+		description AS description
+		FROM department
+	</select>
+
+</mapper>

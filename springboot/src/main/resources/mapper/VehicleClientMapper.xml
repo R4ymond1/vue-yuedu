@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gedc.dao.VehicleClientMapper">
+  <resultMap id="BaseResultMap" type="com.gedc.entity.VehicleClient">
+    <id column="recid" jdbcType="CHAR" property="recid" />
+    <result column="iccid" jdbcType="CHAR" property="iccid" />
+    <result column="use_authority" jdbcType="BIT" property="useAuthority" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+
+  <select id="selectVehicleClientList" resultMap="BaseResultMap">
+    select recid, iccid, use_authority, create_user, update_user
+    from vehicle_client
+  </select>
+  
+  <select id="selectProductList" resultType="com.gedc.entity.Product">
+  SELECT
+  id AS id,
+  name AS name,
+  category AS category,
+  price AS price,
+  place AS place,
+  code AS code
+  FROM product
+  </select>
+  
+  <select id="selectDepartmentList" resultType="com.gedc.entity.Department">
+  SELECT
+  id AS id,
+  name AS name,
+  description AS description
+  FROM department
+  </select>
+  
+  <select id="getDepartment" parameterType="int" resultType="com.gedc.entity.Department">
+  SELECT 
+  id AS id,
+  name AS name,
+  description AS description
+  FROM department where id = #{id}
+  </select>
+    
+  <insert id="insert" parameterType="com.gedc.entity.Department">
+    insert into department(id,name,description) values(#{id},#{name},#{description})
+    <selectKey keyProperty="id" resultType="int">
+        SELECT @@IDENTITY AS ID
+    </selectKey>
+  </insert>
+  
+</mapper>

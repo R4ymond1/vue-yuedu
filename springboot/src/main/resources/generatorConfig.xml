@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="wifi-service-mybatis-generator" targetRuntime="MyBatis3Simple">
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        
+        <!-- DB connection information -->
+        <jdbcConnection
+                connectionURL="jdbc:mysql://${DEV_DATABASE_HOST}:${DEV_DATABASE_PORT}/${DEV_DATABASE_NAME}?nullCatalogMeansCurrent=true"
+                driverClass="com.mysql.jdbc.Driver"
+                userId="${DEV_DATABASE_USERID}"
+                password="${DEV_DATABASE_PASSWORD}" />
+                
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- package and file output setting -->
+        <javaModelGenerator
+                targetPackage="com.gedc.entity"
+                targetProject="springboot/src/main/java" />
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="springboot/src/main/resources" />
+        <javaClientGenerator
+                targetPackage="com.gedc.entitydao"
+                targetProject="springboot/src/main/java" type="XMLMAPPER" />
+
+        <!-- 中間サーバー用テーブル -->
+        <table tableName="department" >
+<!--             <columnOverride column="use_authority" javaType="int" />
+            <columnOverride column="running_status" javaType="int" />
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/> -->
+        </table>
+        <table tableName="product">
+<!--             <columnOverride column="apn_status" javaType="int" />
+            <columnOverride column="used_volume" javaType="BigInteger" />
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/> -->
+        </table>
+        <table tableName="student"></table>    
+    </context>
+</generatorConfiguration>
